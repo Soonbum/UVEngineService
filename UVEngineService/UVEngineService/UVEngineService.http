@@ -1,0 +1,29 @@
+@hostname = localhost
+@port = 5000
+@baseUrl = http://localhost:5000/api/engine
+
+### 1. NQM 엔진 연결 (ID: 0)
+POST {{baseUrl}}/connect
+Content-Type: application/json
+
+{
+  "type": "NQM",
+  "id": 0
+}
+
+### 2. Anhua 엔진 연결 (ID: 1, IP 지정)
+POST {{baseUrl}}/connect
+Content-Type: application/json
+
+{
+  "type": "Anhua",
+  "id": 1,
+  "ip": "192.168.0.100",
+  "port": 5000
+}
+
+### 3. 0번 엔진(NQM) 상태 확인
+GET {{baseUrl}}/0/status
+
+### 4. 1번 엔진(Anhua) LED 켜기
+POST {{baseUrl}}/1/led?isOn=true
